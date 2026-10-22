@@ -4,7 +4,7 @@ A mobile-first, multi-vendor storefront and WhatsApp ordering platform for Niger
 
 ## Current build status
 
-This repository is being built in phases. The first milestone establishes the storefront UI, product browsing, local cart and wishlist, and WhatsApp order handoff. Supabase-backed vendor accounts, persisted orders, and verified online payments are separate milestones and must not be treated as live until implemented and tested.
+This repository is being built in phases. The first milestone establishes the storefront UI, product browsing, local cart and wishlist, and WhatsApp order handoff. Cloudflare D1-backed vendor accounts, persisted orders, and verified online payments are separate milestones and must not be treated as live until implemented and tested.
 
 ## Stack
 
@@ -31,7 +31,7 @@ A standard Next.js App Router app with server-rendered routes, API routes, authe
 
 ## Planned milestones
 
-1. Storefront, product pages, cart, wishlist, WhatsApp order handoff.
+1. Storefront, product pages, catalogue search/filters/sorting, cart, wishlist, customer details form and WhatsApp order handoff.
 2. Cloudflare D1 schema, vendor authentication, isolated dashboard, persistent orders and R2 image storage.
 3. Paystack initialization, verification, signed webhooks, idempotency.
 4. Tests, security hardening, setup/deployment documentation.
