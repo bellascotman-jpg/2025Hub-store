@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Heart, Minus, Plus, ShoppingBag, Trash2 } from "lucide-react";
-import { demoProducts, formatNaira, type Product } from "@/lib/products";
+import { demoProducts, formatNaira, getWhatsAppChatUrl, type Product } from "@/lib/products";
 
 type CartLine = { productId: string; quantity: number; size?: string };
 const CART_KEY = "2025hub-cart-v1";
@@ -100,7 +100,12 @@ export function CartPanel() {
       "",
       "Please confirm current stock, item condition, delivery fee and final total before I pay. I understand these are demo listings until confirmed."
     ].join("\n");
-    window.open(`https://wa.me/${storeWhatsApp}?text=${encodeURIComponent(message)}`, "_blank", "noopener,noreferrer");
+    const whatsappUrl = getWhatsAppChatUrl(storeWhatsApp, message);
+    if (!whatsappUrl) {
+      setNote("WhatsApp number is not configured. The vendor must add a verified international number first.");
+      return;
+    }
+    window.open(whatsappUrl, "_blank", "noopener,noreferrer");
     setNote("Your message is prepared in WhatsApp. Review and send it there; no order or payment is recorded by this demo.");
   }
 
