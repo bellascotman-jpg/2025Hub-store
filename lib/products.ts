@@ -69,8 +69,10 @@ export function getStoreConfig() {
     slug: "2025hub",
     tagline: "Your style. Your next find.",
     description: "Discover standout pieces, everyday essentials and accessories chosen to make getting dressed feel effortless.",
-    location: "Lagos, Nigeria",
-    whatsapp: process.env.NEXT_PUBLIC_DEMO_WHATSAPP_NUMBER ?? "",
+    location: "College Road, Agege, Lagos",
+    contactEmail: "olamideolaide354@gmail.com",
+    website: "https://2025hub.com",
+    whatsapp: process.env.NEXT_PUBLIC_DEMO_WHATSAPP_NUMBER ?? "2347016090643",
     instagram: "https://www.instagram.com/2025hub/"
   };
 }
