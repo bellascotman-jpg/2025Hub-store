@@ -1,6 +1,7 @@
 "use client";
 
-import { FormEvent, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import type { FormEvent } from "react";
 import Link from "next/link";
 import { ArrowLeft, MessageCircle, ShieldAlert } from "lucide-react";
 import { demoProducts, formatNaira, getWhatsAppChatUrl, type Product } from "@/lib/products";
