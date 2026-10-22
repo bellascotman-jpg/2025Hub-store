@@ -27,7 +27,7 @@ A preview URL is not guaranteed merely because the repository is connected. A su
 
 ## Local Worker preview
 
-With Node.js 20.9+ installed:
+With Node.js 22 installed:
 
 ```bash
 npm install
@@ -41,6 +41,19 @@ npx wrangler login
 npm run cf:deploy
 ```
 
+## Store contact configuration
+
+The landing page and store page show a WhatsApp button only when the number is configured. In Workers Builds, open the project's Settings → Variables and Secrets (or build configuration variables, depending on the dashboard) and add:
+
+- Name: NEXT_PUBLIC_DEMO_WHATSAPP_NUMBER
+- Value: the store's verified WhatsApp number in international digits-only format. A Nigerian number begins with 234 and omits the leading 0 and +.
+
+Because this NEXT_PUBLIC_ variable is used by client-side code, it must be available to the build process. Trigger a fresh build after adding or changing it. Never place a private payment secret in a NEXT_PUBLIC_ variable.
+
+## Database groundwork
+
+The first D1 schema draft is in migrations/0001_store_schema.sql. It is not live until a D1 database is created, the database ID is configured as a binding in wrangler.jsonc, and the migration is applied. Do not put a made-up database ID in the configuration.
+
 ## Current feature status
 
-The initial release is a storefront prototype. Supabase authentication/database persistence, vendor dashboards, verified Paystack payments, and production order management are not implemented yet. Do not collect real payments until those systems and their security tests are complete.
+The storefront includes sample product cards, search, category filters, sorting, product detail pages, local cart and wishlist, and a checkout enquiry form that prepares customer and item details for WhatsApp. Sample products, prices, and Unsplash images are illustrative. The checkout does not yet persist orders in D1 or accept payments. Vendor authentication/dashboard and verified Paystack payments remain future milestones. Do not collect real payments until those systems and their security tests are complete.
