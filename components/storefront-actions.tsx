@@ -67,7 +67,6 @@ export function ProductActions({ product }: { product: Product }) {
 export function CartPanel() {
   const [cart, setCart] = useState<CartLine[]>([]);
   const [ready, setReady] = useState(false);
-  const [note, setNote] = useState("");
 
   useEffect(() => {
     setCart(readStorage<CartLine[]>(CART_KEY, []));
@@ -85,28 +84,6 @@ export function CartPanel() {
   function update(line: CartLine, delta: number) {
     setCart((current) => current.map((item) => item.productId === line.productId && item.size === line.size
       ? { ...item, quantity: Math.max(1, item.quantity + delta) } : item));
-  }
-
-  function prepareWhatsAppOrder() {
-    const storeWhatsApp = process.env.NEXT_PUBLIC_DEMO_WHATSAPP_NUMBER?.replace(/\D/g, "") ?? "";
-    if (!storeWhatsApp) {
-      setNote("WhatsApp ordering is not connected yet. The vendor must add a verified WhatsApp number in the environment settings.");
-      return;
-    }
-    const message = [
-      "Hello 2025Hub, I'd like to enquire about these items:",
-      ...lines.map((line) => `• ${line.product.name}${line.size ? ` (Size: ${line.size})` : ""} × ${line.quantity} — ${formatNaira(line.product.price * line.quantity)}`),
-      `Subtotal: ${formatNaira(total)}`,
-      "",
-      "Please confirm current stock, item condition, delivery fee and final total before I pay. I understand these are demo listings until confirmed."
-    ].join("\n");
-    const whatsappUrl = getWhatsAppChatUrl(storeWhatsApp, message);
-    if (!whatsappUrl) {
-      setNote("WhatsApp number is not configured. The vendor must add a verified international number first.");
-      return;
-    }
-    window.open(whatsappUrl, "_blank", "noopener,noreferrer");
-    setNote("Your message is prepared in WhatsApp. Review and send it there; no order or payment is recorded by this demo.");
   }
 
   if (!ready) return <div className="panel p-6">Loading your bag…</div>;
@@ -146,8 +123,7 @@ export function CartPanel() {
         <div className="my-5 border-t border-black/10" />
         <div className="flex justify-between font-semibold"><span>Estimated subtotal</span><span>{formatNaira(total)}</span></div>
         <p className="mt-4 rounded-xl bg-amber-50 p-3 text-xs leading-5 text-amber-900">Sample listings and prices only. This prototype does not reserve stock, create a database order, or accept payment.</p>
-        <button onClick={prepareWhatsAppOrder} disabled={!lines.length} className="btn-primary mt-5 w-full disabled:cursor-not-allowed disabled:opacity-50">Continue on WhatsApp</button>
-        {note ? <p role="status" className="mt-3 text-sm text-muted">{note}</p> : null}
+        <Link href="/checkout" aria-disabled={!lines.length} className={`btn-primary mt-5 w-full ${!lines.length ? "pointer-events-none opacity-50" : ""}`}>Continue to checkout</Link>
       </aside>
     </div>
   );
