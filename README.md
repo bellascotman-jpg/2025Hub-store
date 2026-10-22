@@ -10,7 +10,7 @@ This repository is being built in phases. The first milestone establishes the st
 
 - Next.js App Router + TypeScript
 - Tailwind CSS
-- Supabase (planned for database, auth, and storage)
+- Cloudflare D1 (planned SQL database), R2 (planned image storage), Workers (application runtime)
 - Paystack (planned; payment must be verified server-side)
 - WhatsApp click-to-chat
 
@@ -32,6 +32,10 @@ A standard Next.js App Router app with server-rendered routes, API routes, authe
 ## Planned milestones
 
 1. Storefront, product pages, cart, wishlist, WhatsApp order handoff.
-2. Supabase schema, vendor authentication, isolated dashboard, persistent orders.
+2. Cloudflare D1 schema, vendor authentication, isolated dashboard, persistent orders and R2 image storage.
 3. Paystack initialization, verification, signed webhooks, idempotency.
 4. Tests, security hardening, setup/deployment documentation.
+
+## WhatsApp configuration
+
+Set `NEXT_PUBLIC_DEMO_WHATSAPP_NUMBER` to the verified store WhatsApp number in international format using digits only (for example, a Nigerian number starts with `234`, without the local leading `0`). The cart prepares an encoded click-to-chat message; the customer must review and manually send it in WhatsApp. This prototype does not create a database order or record payment.
