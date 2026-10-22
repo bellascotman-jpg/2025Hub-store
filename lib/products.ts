@@ -74,3 +74,9 @@ export function getStoreConfig() {
     instagram: "https://www.instagram.com/2025hub/"
   };
 }
+/** Build a safe click-to-chat URL. WhatsApp requires an international number without the leading plus sign. */
+export function getWhatsAppChatUrl(phone: string, message: string) {
+  const digits = phone.replace(/\\D/g, "");
+  if (!digits) return "";
+  return `https://wa.me/${digits}?text=${encodeURIComponent(message)}`;
+}
