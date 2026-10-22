@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { Heart, Minus, Plus, ShoppingBag, Trash2 } from "lucide-react";
 import { demoProducts, formatNaira, type Product } from "@/lib/products";
 
@@ -129,7 +130,7 @@ export function CartPanel() {
             <ShoppingBag className="mx-auto mb-4 text-muted" size={32} />
             <h2 className="text-lg font-semibold">Your bag is taking a breather.</h2>
             <p className="mt-2 text-sm text-muted">Browse the collection and add something you like.</p>
-            <a href="/store/2025hub" className="btn-primary mx-auto mt-5">Explore collection</a>
+            <Link href="/store/2025hub" className="btn-primary mx-auto mt-5">Explore collection</Link>
           </div>
         )}
       </section>
@@ -158,7 +159,7 @@ export function WishlistPanel() {
           <a href={`/store/2025hub/product/${product.id}`}><img src={product.image} alt={product.name} className="product-image" /></a>
           <div className="p-4"><p className="text-xs text-muted">{product.category}</p><a className="mt-1 block font-semibold" href={`/store/2025hub/product/${product.id}`}>{product.name}</a><p className="mt-2 font-semibold">{formatNaira(product.price)}</p><button className="mt-4 text-sm underline" onClick={() => { const next = ids.filter((id) => id !== product.id); setIds(next); window.localStorage.setItem(WISHLIST_KEY, JSON.stringify(next)); }}>Remove</button></div>
         </article>
-      ))}</div> : <div className="panel p-10 text-center"><Heart className="mx-auto mb-3 text-muted" /><h2 className="font-semibold">Your wishlist is empty</h2><p className="mt-2 text-sm text-muted">Save pieces you want to come back to.</p><a href="/store/2025hub" className="btn-primary mx-auto mt-5">Browse products</a></div>}
+      ))}</div> : <div className="panel p-10 text-center"><Heart className="mx-auto mb-3 text-muted" /><h2 className="font-semibold">Your wishlist is empty</h2><p className="mt-2 text-sm text-muted">Save pieces you want to come back to.</p><Link href="/store/2025hub" className="btn-primary mx-auto mt-5">Browse products</Link></div>}
     </div>
   );
 }
