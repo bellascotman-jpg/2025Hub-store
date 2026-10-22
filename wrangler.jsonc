@@ -12,5 +12,13 @@
   },
   "observability": {
     "enabled": true
-  }
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "2025hub",
+      "database_id": "2cf7f733-6689-4e0a-bd19-ce84bb60172d",
+      "migrations_dir": "migrations"
+    }
+  ]
 }
