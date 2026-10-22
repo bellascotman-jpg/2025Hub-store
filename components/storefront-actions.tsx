@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Heart, Minus, Plus, ShoppingBag, Trash2 } from "lucide-react";
-import { demoProducts, formatNaira, getWhatsAppChatUrl, type Product } from "@/lib/products";
+import { demoProducts, formatNaira, type Product } from "@/lib/products";
 
 type CartLine = { productId: string; quantity: number; size?: string };
 const CART_KEY = "2025hub-cart-v1";
